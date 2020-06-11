@@ -1,0 +1,14 @@
+{
+    "name": "fufaldinav/mailberry",
+    "type": "package",
+    "require": {
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Artem Fufaldin",
+            "email": "artem.fufaldin@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
