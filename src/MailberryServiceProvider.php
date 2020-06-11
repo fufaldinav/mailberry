@@ -2,6 +2,7 @@
 
 namespace Fufaldinav\Mailberry;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class MailberryServiceProvider extends ServiceProvider
@@ -38,5 +39,9 @@ class MailberryServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/mailberry.php' => config_path('mailberry.php'),
         ]);
+
+        if (!App::environment('production') && isset($this->to['address'])) {
+            config(['mail.to' => $this->to]);
+        }
     }
 }
