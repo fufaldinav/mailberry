@@ -2,7 +2,14 @@
     "name": "fufaldinav/mailberry",
     "type": "package",
     "require": {
+        "php": "^7.2.5",
+        "laravel/framework": "^7.0"
     },
+    "keywords": [
+        "mail",
+        "mailer",
+        "laravel"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -14,6 +21,14 @@
     "autoload": {
         "psr-4": {
             "Fufaldinav\\Mailberry\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fufaldinav\\Mailberry\\MailberryServiceProvider"
+            ],
+            "aliases": {}
         }
     }
 }
