@@ -38,7 +38,7 @@ class MailberryServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/mailberry.php' => config_path('mailberry.php'),
-        ]);
+        ], 'mailberry-config');
 
         if (!App::environment('production') && isset($this->to['address'])) {
             config(['mail.to' => $this->to]);
