@@ -45,6 +45,6 @@ class MailberryServiceProvider extends \Illuminate\Mail\MailServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/mailberry.php' => config_path('mailberry.php'),
-        ]);
+        ], 'mailberry-config');
     }
 }
