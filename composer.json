@@ -22,13 +22,5 @@
         "psr-4": {
             "Fufaldinav\\Mailberry\\": "src/"
         }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Fufaldinav\\Mailberry\\MailberryServiceProvider"
-            ],
-            "aliases": {}
-        }
     }
 }

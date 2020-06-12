@@ -2,20 +2,10 @@
 
 namespace Fufaldinav\Mailberry;
 
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\ServiceProvider;
-
-class MailberryServiceProvider extends ServiceProvider
+class MailberryServiceProvider extends \Illuminate\Mail\MailServiceProvider
 {
     /**
-     * Адресат для получения всех писем вне production.
-     *
-     * @var array
-     */
-    protected $to;
-
-    /**
-     * Register services.
+     * Register the service provider.
      *
      * @return void
      */
@@ -26,7 +16,24 @@ class MailberryServiceProvider extends ServiceProvider
             'mailberry'
         );
 
-        $this->to = config('mailberry.to');
+        parent::register();
+    }
+
+    /**
+     * Переопределенный метод MailServiceProvider
+     *
+     * @return void
+     */
+    protected function registerIlluminateMailer()
+    {
+        $this->app->singleton('mail.manager', function ($app) {
+            // Будет создан экземпляр нашего класса MailManager, оператор use не используется
+            return new MailManager($app);
+        });
+
+        $this->app->bind('mailer', function ($app) {
+            return $app->make('mail.manager')->mailer();
+        });
     }
 
     /**
@@ -39,9 +46,5 @@ class MailberryServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/mailberry.php' => config_path('mailberry.php'),
         ]);
-
-        if (!App::environment('production') && isset($this->to['address'])) {
-            config(['mail.to' => $this->to]);
-        }
     }
 }
