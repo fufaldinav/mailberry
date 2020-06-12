@@ -1,5 +1,6 @@
 {
     "name": "fufaldinav/mailberry",
+    "version": "1.0.0",
     "type": "package",
     "require": {
         "php": "^7.2.5",
